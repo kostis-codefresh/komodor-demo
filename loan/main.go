@@ -16,7 +16,13 @@ func main() {
 	})
 
 	http.HandleFunc("/health/ready", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "yes")
+		_, err := getInterestRate()
+		if err != nil {
+			http.Error(w, "nope!", http.StatusServiceUnavailable)
+		} else {
+			fmt.Fprintln(w, "yes")
+		}
+
 	})
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -32,9 +38,11 @@ func main() {
 		quote := ""
 		interestFound, err := getInterestRate()
 		if err != nil {
+			log.Println("Interest error :", err)
 			quote = "Could not get interest. Sorry!"
+		} else {
+			quote = offerQuote(loanAmount, interestFound)
 		}
-		quote = offerQuote(loanAmount, interestFound)
 
 		fmt.Fprintf(w, `<html>
 		<form method="post">
@@ -42,13 +50,9 @@ func main() {
 		<br/>
 		<input type="submit">
 		</form>
-		
 		<br/>
 		%s
-		
 		</html>
-		
-		
 		`, loanAmount, quote)
 	})
 
@@ -67,7 +71,7 @@ func offerQuote(loan int, interest int) string {
 }
 
 func getInterestRate() (rate int, err error) {
-	url := "http://interest:8080/api/v1/in2terest"
+	url := "http://interest:8080/api/v1/interest"
 	resp, err := http.Get(url)
 	if err != nil {
 		log.Printf("Could not access %s, got %s\n ", url, err)

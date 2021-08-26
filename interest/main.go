@@ -20,8 +20,10 @@ func main() {
 	http.HandleFunc("/api/v1/interest", func(w http.ResponseWriter, r *http.Request) {
 		randomSource := rand.NewSource(time.Now().UnixNano())
 		calculatedInterest := rand.New(randomSource)
-		fmt.Fprintln(w, (calculatedInterest.Intn(26) + 10))
+		fmt.Fprint(w, (calculatedInterest.Intn(26) + 10))
 	})
+
+	http.HandleFunc("/api/", http.NotFound)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "<html>I calculate interests. Call <a href='api/v1/interest'>api/v1/interest</a> to get your quote.</html>")
