@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: komodor-demo-frontend
+  name: moneymaker-app
 spec:
   revisionHistoryLimit: 0
   replicas: 2

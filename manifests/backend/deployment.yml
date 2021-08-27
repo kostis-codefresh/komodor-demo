@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: komodor-demo-backend
+  name: hidden-dependency
 spec:
   revisionHistoryLimit: 0
   replicas: 2
