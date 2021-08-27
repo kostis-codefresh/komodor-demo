@@ -57,7 +57,8 @@ func main() {
 	})
 
 	fmt.Println("Listening now at port 8080")
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+	log.Fatal(err)
 }
 
 func offerQuote(loan int, interest int) string {
