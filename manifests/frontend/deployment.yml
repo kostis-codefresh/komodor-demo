@@ -19,15 +19,15 @@ spec:
         image: docker.io/kostiscodefresh/loan:main
         ports:
         - containerPort: 8080
-        livenessProbe:
-          timeoutSeconds: 8
-          periodSeconds: 30
-          httpGet:
-            path: /health/live
-            port: 8080
-        readinessProbe:
-          timeoutSeconds: 8
-          periodSeconds: 30
-          httpGet:
-            path: /health/ready
-            port: 8080  
+        # livenessProbe:
+        #   timeoutSeconds: 8
+        #   periodSeconds: 30
+        #   httpGet:
+        #     path: /health/live
+        #     port: 8080
+        # readinessProbe:
+        #   timeoutSeconds: 8
+        #   periodSeconds: 30
+        #   httpGet:
+        #     path: /health/ready
+        #     port: 8080  
