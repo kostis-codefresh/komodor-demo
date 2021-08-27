@@ -27,13 +27,7 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 
-		r.ParseForm()                           // Parses the request body
-		loanPostParameter := r.Form.Get("loan") // x will be "" if parameter is not set
-
-		loanAmount, err := strconv.Atoi(loanPostParameter)
-		if err != nil {
-			loanAmount = 0
-		}
+		loanAmount := parseLoanAmount(r)
 
 		quote := ""
 		interestFound, err := getInterestRate()
@@ -59,6 +53,23 @@ func main() {
 	fmt.Println("Listening now at port 8080")
 	err := http.ListenAndServe(":8080", nil)
 	log.Fatal(err)
+}
+
+func parseLoanAmount(r *http.Request) int {
+
+	err := r.ParseForm() // Parses the request body
+	if err != nil {
+		return 0
+	}
+
+	loanPostParameter := r.Form.Get("loan") // x will be "" if parameter is not set
+
+	loanAmount, err := strconv.Atoi(loanPostParameter)
+	if err != nil {
+		return 0
+	}
+	return loanAmount
+
 }
 
 func offerQuote(loan int, interest int) string {
