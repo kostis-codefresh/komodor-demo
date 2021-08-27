@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: komodor-demo-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loan
+  template:
+    metadata:
+      labels:
+        app: loan
+    spec:
+      containers:
+      - name: loan
+        image: docker.io/kostiscodefresh/loan:main
+        ports:
+        - containerPort: 8080
