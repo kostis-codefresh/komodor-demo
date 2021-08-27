@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: komodor-demo-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: interest
+  template:
+    metadata:
+      labels:
+        app: interest
+    spec:
+      containers:
+      - name: interest
+        image: docker.io/kostiscodefresh/interest:main
+        ports:
+        - containerPort: 8080
