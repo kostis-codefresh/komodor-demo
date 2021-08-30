@@ -12,16 +12,25 @@ import (
 func main() {
 
 	http.HandleFunc("/health/live", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "up")
+		_, err := getInterestRate()
+		if err != nil {
+			http.Error(w, "down!", http.StatusServiceUnavailable)
+		} else {
+			fmt.Fprintln(w, "up")
+		}
+
+		// fmt.Fprintln(w, "up")
 	})
 
 	http.HandleFunc("/health/ready", func(w http.ResponseWriter, r *http.Request) {
-		_, err := getInterestRate()
-		if err != nil {
-			http.Error(w, "nope!", http.StatusServiceUnavailable)
-		} else {
-			fmt.Fprintln(w, "yes")
-		}
+		// _, err := getInterestRate()
+		// if err != nil {
+		// 	http.Error(w, "nope!", http.StatusServiceUnavailable)
+		// } else {
+		// 	fmt.Fprintln(w, "yes")
+		// }
+
+		fmt.Fprintln(w, "yes")
 
 	})
 
