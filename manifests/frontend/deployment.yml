@@ -6,7 +6,7 @@ metadata:
   annotations:
     app.komodor.com/app: https://github.com/kostis-codefresh/komodor-demo
     app.komodor.com/app.ref: {{CF_REVISION}}     
-    app.komodor.com/deploy.job.jenkins: https://g.codefresh.io/build/{{CF_BUILD_ID }}
+    app.komodor.com/deploy.job.jenkins: {{CF_BUILD_URL}}
 spec:
   revisionHistoryLimit: 0
   replicas: 2
