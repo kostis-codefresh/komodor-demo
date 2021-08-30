@@ -16,18 +16,18 @@ spec:
     spec:
       containers:
       - name: loan
-        image: docker.io/kostiscodefresh/loan:main
+        image: docker.io/kostiscodefresh/loan:{{CF_SHORT_REVISION}} 
         ports:
         - containerPort: 8080
-        # livenessProbe:
-        #   timeoutSeconds: 8
-        #   periodSeconds: 30
-        #   httpGet:
-        #     path: /health/live
-        #     port: 8080
-        # readinessProbe:
-        #   timeoutSeconds: 8
-        #   periodSeconds: 30
-        #   httpGet:
-        #     path: /health/ready
-        #     port: 8080  
+        livenessProbe:
+          timeoutSeconds: 8
+          periodSeconds: 30
+          httpGet:
+            path: /health/live
+            port: 8080
+        readinessProbe:
+          timeoutSeconds: 8
+          periodSeconds: 30
+          httpGet:
+            path: /health/ready
+            port: 8080  

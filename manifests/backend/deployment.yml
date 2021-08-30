@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: interest
-        image: docker.io/kostiscodefresh/interest:main
+        image: docker.io/kostiscodefresh/interest:{{CF_SHORT_REVISION}} 
         ports:
         - containerPort: 8080
         livenessProbe:
