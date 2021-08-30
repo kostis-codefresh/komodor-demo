@@ -11,7 +11,8 @@ import (
 func main() {
 
 	http.HandleFunc("/health/live", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "up")
+		// fmt.Fprintln(w, "up")
+		http.Error(w, "down!", http.StatusServiceUnavailable)
 	})
 
 	http.HandleFunc("/health/ready", func(w http.ResponseWriter, r *http.Request) {
