@@ -3,6 +3,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hidden-dependency
+  annotations:
+    app.komodor.com/app: https://github.com/kostis-codefresh/komodor-demo
+    app.komodor.com/app.ref: {{CF_REVISION}}     
+    app.komodor.com/deploy.job.jenkins: {{CF_BUILD_URL}}  
+    app.komodor.com/service.link.grafana-overall-system-health: "https://grafana.com/orgs/kostis"
 spec:
   revisionHistoryLimit: 0
   replicas: 2
