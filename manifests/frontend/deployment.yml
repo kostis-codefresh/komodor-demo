@@ -9,6 +9,7 @@ metadata:
     app.komodor.com/deploy.job.jenkins: {{CF_BUILD_URL}}
     app.komodor.com/service.link.grafana-overall-system-health: "https://grafana.com/orgs/kostis"
     app.kubernetes.io/component: frontend
+    app.komodor.com/label.team: frontend
 spec:
   revisionHistoryLimit: 0
   replicas: 2
