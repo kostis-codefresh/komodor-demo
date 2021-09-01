@@ -8,7 +8,7 @@ metadata:
     app.komodor.com/app.ref: {{CF_REVISION}}     
     app.komodor.com/deploy.job.jenkins: {{CF_BUILD_URL}}  
     app.komodor.com/service.link.grafana-overall-system-health: "https://grafana.com/orgs/kostis"
-    app.komomdor.com/label/group: billing
+    app.komodor.com/label/group: billing
 spec:
   revisionHistoryLimit: 0
   replicas: 2
